@@ -4,6 +4,7 @@
     <dimen name="textSize">12sp</dimen>
     <dimen name="skill_level_text_size">12sp</dimen>
     <dimen name="toolbar_height">232dp</dimen>
+    <dimen name="default_toolbar_height">52dp</dimen>
     <dimen name="splash_screen_author_margin">40dp</dimen>
     <dimen name="toolbar_elevation">4dp</dimen>
     <dimen name="toolbar_title_margin_start">72dp</dimen>
@@ -16,4 +17,5 @@
     <dimen name="default_layout_margin_doubled">32dp</dimen>
     <dimen name="social_network_icon_dimen_small">16dp</dimen>
     <dimen name="default_layout_margin_halved">8dp</dimen>
+    <dimen name="toolbar_text_height">18sp</dimen>
 </resources>

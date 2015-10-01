@@ -1,5 +1,6 @@
-package com.droidsonroids.portfolio.screen_main;
+package com.droidsonroids.portfolio.screen_main.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -7,13 +8,20 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import butterknife.Bind;
+
 import com.droidsonroids.portfolio.R;
 import com.droidsonroids.portfolio.mvp.MvpActivity;
+import com.droidsonroids.portfolio.screen_details.AppDetailsActivity;
+import com.droidsonroids.portfolio.screen_main.cards.AppItem;
+import com.droidsonroids.portfolio.screen_main.cards.Apps;
+import com.droidsonroids.portfolio.screen_main.cards.AppsRecyclerAdapter;
+
+import butterknife.Bind;
 
 public class MainActivity extends MvpActivity<MainActivityView, MainActivityPresenter> implements MainActivityView, AppBarLayout.OnOffsetChangedListener {
 	private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR = 0.9f;
@@ -33,6 +41,7 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 	@Bind(R.id.activity_main_fl_title) FrameLayout mFlTitleContainer;
 	@Bind(R.id.toolbar_rl) RelativeLayout mRlToolbarMainLayout;
 	@Bind(R.id.activity_main_cl) CoordinatorLayout mClCoordinatorLayout;
+	@Bind(R.id.cards_recyclerView) RecyclerView mCardsRecyclerView;
 
 	@Override
 	protected MainActivityPresenter createPresenter() {
@@ -56,11 +65,21 @@ public class MainActivity extends MvpActivity<MainActivityView, MainActivityPres
 	}
 
 	private void init() {
-		//mRecyclerView.setAdapter(new MainRecyclerViewAdapter(this));
-		//mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+		initRecyclerView();
 		mAppBarLayout.addOnOffsetChangedListener(this);
 		mClCoordinatorLayout.setOnTouchListener((v, event) -> true);
 		initParallaxValues();
+	}
+
+	private void initRecyclerView() {
+		AppsRecyclerAdapter adapter = new AppsRecyclerAdapter(Apps.getApps(), this::showNewActivity);
+		mCardsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+		mCardsRecyclerView.setHasFixedSize(true);
+		mCardsRecyclerView.setAdapter(adapter);
+	}
+
+	private void showNewActivity(final AppItem item) {
+		AppDetailsActivity.newInstance(this, item);
 	}
 
 
