@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:background="@android:color/white"
 	android:orientation="vertical">
 
-	<android.widget.Toolbar
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/google_play_fab"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		app:elevation="4dp"
+		android:layout_marginTop="@dimen/default_toolbar_height_halved"
+		android:layout_alignParentRight="true"
+		android:layout_alignParentEnd="true"
+		android:visibility="invisible"
+		android:src="@drawable/ic_google_play"
+		android:layout_marginRight="35dp"
+		android:layout_marginEnd="35dp"/>
+
+	<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
 		android:layout_width="match_parent"
 		android:layout_height="@dimen/default_toolbar_height"
 		android:background="@color/primary_color">
@@ -21,19 +36,63 @@
 			android:textSize="@dimen/toolbar_text_height"
 			tools:text="Ai Hire"/>
 
+	</android.support.v7.widget.Toolbar>
 
-	</android.widget.Toolbar>
-
-	<LinearLayout
+	<ScrollView
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:background="@drawable/bottom_shadow">
+		android:paddingTop="@dimen/default_layout_margin"
 
-		<android.support.v4.view.ViewPager
+		android:background="@drawable/bottom_shadow"
+		android:layout_below="@+id/toolbar">
+
+		<LinearLayout
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			/>
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
 
-	</LinearLayout>
+			<TextView
+				android:id="@+id/app_description_textView"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="@dimen/default_layout_margin"
+				android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+				android:textColor="@color/fontColor"
+				android:textSize="16sp"/>
 
-</LinearLayout>
+			<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="@dimen/default_layout_margin_halved"
+				android:gravity="center"
+				android:orientation="horizontal">
+
+				<View
+					android:id="@+id/firstDot"
+					style="@style/dotsStyle"
+					android:layout_marginRight="@dimen/default_layout_margin_quarter"
+					android:background="@drawable/dots_active"/>
+
+				<View
+					android:id="@+id/secondDot"
+					style="@style/dotsStyle"
+					android:layout_marginRight="@dimen/default_layout_margin_quarter"/>
+
+				<View
+					android:id="@+id/thirdDot"
+					style="@style/dotsStyle"/>
+
+			</LinearLayout>
+
+			<android.support.v4.view.ViewPager
+				android:id="@+id/details_viewPager"
+				android:layout_width="match_parent"
+				android:layout_height="500dp"
+				android:layout_marginTop="@dimen/default_layout_margin_halved"/>
+
+
+		</LinearLayout>
+
+	</ScrollView>
+
+</RelativeLayout>
